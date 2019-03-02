@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import store from './store';
 
 const data = {
   "Ivel Z3": {
@@ -34,6 +35,15 @@ class App extends Component {
     })
   }
 
+  reduxUpdateState = () => {
+    store.dispatch(
+      {
+        type: "ADD_MODEL",
+        payload: data[this.state.value]
+      }
+    )
+  }
+
   render() {
     console.log(this.state)
     return (
@@ -45,6 +55,7 @@ class App extends Component {
           <option value={Object.keys(data)[1]}>{Object.keys(data)[1]} ({data["Bally Astrocade"].year})</option>
           <option value={Object.keys(data)[3]}>{Object.keys(data)[3]} ({data["Commodore 64"].year})</option>
         </select>
+        <button onClick={this.reduxUpdateState}>add</button>
       </div>
     );
   }

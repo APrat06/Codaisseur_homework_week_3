@@ -1,8 +1,14 @@
 const reducer = (state = [], action = {}) => {
-    switch (action.type) {
-    default:
-      return state
-    }
+  switch (action.type) {
+  case 'ADD_MODEL':
+    return [
+      ...state,
+      action.payload
+    ]
+
+  default:
+    return state
   }
-  
-  export default reducer
+}
+
+export default reducer
