@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import store from './store';
+import {connect} from 'react-redux';
+import ModelDetails from './ModelDetails';
 
 const data = {
   "Ivel Z3": {
@@ -45,10 +47,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="App">
-        <select onChange={this.updateSelection} value={this.state}>
+        <ModelDetails /* items={this.props.reducer} */ items={this.state.value}/>
+        <select onChange={this.updateSelection} value={this.state.value}>
           <option value="">-- pick a model --</option>
           <option value={Object.keys(data)[0]}>{Object.keys(data)[0]} ({data["Ivel Z3"].year})</option>
           <option value={Object.keys(data)[2]}>{Object.keys(data)[2]} ({data["Sord M200 Smart Home Computer"].year})</option>
@@ -61,4 +63,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    // reducer: state.reducer
+  }
+}
+
+export default connect(mapStateToProps)(App)
