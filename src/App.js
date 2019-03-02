@@ -25,10 +25,20 @@ const data = {
 }
 
 class App extends Component {
+
+  state = {}
+
+  updateSelection = (e) => {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
   render() {
+    console.log(this.state)
     return (
       <div className="App">
-        <select>
+        <select onChange={this.updateSelection} value={this.state}>
           <option value="">-- pick a model --</option>
           <option value={Object.keys(data)[0]}>{Object.keys(data)[0]} ({data["Ivel Z3"].year})</option>
           <option value={Object.keys(data)[2]}>{Object.keys(data)[2]} ({data["Sord M200 Smart Home Computer"].year})</option>
